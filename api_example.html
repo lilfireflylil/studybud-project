@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Rooms</title>
+    <style>
+        body {
+            background-color: lightslategrey;
+        }
+        .title {
+            text-align: center;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">Cool Rooms From "StudyBud" django project</h1>
+    <hr>
+
+    <div id="container">
+
+    </div>
+
+
+    <script>
+        let = roomContainer = document.getElementById("container");
+
+        let getRooms = async () => {
+            let response = await fetch('http://localhost:8000/api/rooms/');
+            let rooms = await response.json();
+            
+            for (let index=0; rooms.length > index; index++) {
+                let room = rooms[index];
+                row = `<ul>
+                            <li>${room.name}</li>
+                        </ul>`;
+                
+                roomContainer.innerHTML += row;
+            }
+        }
+
+        getRooms()
+    </script>
+</body>
+</html>
